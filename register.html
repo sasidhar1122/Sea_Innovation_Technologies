@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Professional Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --dark-color: #2b2d42;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --success-color: #4bb543;
+            --error-color: #f44336;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        /* Header styling (from login33.html) */
+        .site-header {
+            background-color: #000;
+            padding: 1rem 2rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-svg {
+            height: 55px;
+            width: auto;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            color: #f8f5e6;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* General styles for register.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.25rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .register-form {
+            flex: 2;
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px 12px;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-check-input {
+            margin-right: 0.75rem;
+            width: 1.1em;
+            height: 1.1em;
+        }
+        
+        .form-check-label {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+        
+        .form-check-label a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .form-check-label a:hover {
+            text-decoration: underline;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.875rem 1.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(67, 97, 238, 0.2);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--gray-color);
+        }
+        
+        .login-link a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Contact section styling */
+        .contact-section {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            align-self: flex-start;
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .register-form, .contact-section {
+                flex: auto;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .register-form, .contact-section {
+                padding: 1.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1rem;
+            }
+            
+            .btn {
+                padding: 0.75rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Updated Header (from login33.html) -->
+    <header class="site-header">
+        <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" stroke="#FFFFFF" stroke-width="5">
+                    <!-- Light bulb outline -->
+                    <path d="M150 70 C110 70 80 100 80 140 C80 170 105 190 115 210 L185 210 C195 190 220 170 220 140 C220 100 190 70 150 70 Z" />
+                    
+                    <!-- Bulb base -->
+                    <path d="M115 220 L115 230 C115 240 125 250 150 250 C175 250 185 240 185 230 L185 220" />
+                    <line x1="120" y1="230" x2="180" y2="230" />
+                    <line x1="125" y1="240" x2="175" y2="240" />
+                    
+                    <!-- Brain and gear combo inside -->
+                    <path d="M120 140 C120 120 135 110 150 110 C165 110 180 120 180 140 C180 160 165 180 150 180 C135 180 120 160 120 140 Z" />
+                    
+                    <!-- Vertical line dividing brain -->
+                    <line x1="150" y1="110" x2="150" y2="180" />
+                    
+                    <!-- Gear teeth right side -->
+                    <path d="M170 125 L180 120" />
+                    <path d="M175 150 L185 150" />
+                    <path d="M170 175 L180 180" />
+                    
+                    <!-- Light rays -->
+                    <line x1="235" y1="100" x2="250" y2="85" />
+                    <line x1="250" y1="140" x2="270" y2="140" />
+                    <line x1="235" y1="180" x2="250" y2="195" />
+                    
+                    <line x1="65" y1="100" x2="50" y2="85" />
+                    <line x1="50" y1="140" x2="30" y2="140" />
+                    <line x1="65" y1="180" x2="50" y2="195" />
+                    
+                    <line x1="150" y1="50" x2="150" y2="30" />
+                    <line x1="190" y1="65" x2="205" y2="50" />
+                    <line x1="110" y1="65" x2="95" y2="50" />
+                </g>
+            </svg>
+            <div class="logo-text">Sea Innovative Technologies</div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="page-header">
+            <h1>Create Your Account</h1>
+        </div>
+        <div class="content-wrapper">
+            <section class="register-form">
+                <h2 class="section-title">Registration Form</h2>
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <label for="fullname" class="form-label">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password" class="form-label">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-type" class="form-label">I am a</label>
+                        <select id="user-type" name="user-type" class="form-control form-select" required>
+                            <option value="">Select your role</option>
+                            <option value="student">Student</option>
+                            <option value="parent">Parent</option>
+                            <option value="college">College Management</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="terms" name="terms" class="form-check-input" required>
+                        <label for="terms" class="form-check-label">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                    
+                    <div class="login-link">
+                        Already have an account? <a href="/login">Sign in</a>
+                    </div>
+                </form>
+            </section>
+            <section class="contact-section">
+                <h2 class="section-title">Contact Us</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--gray-color);">
+                    Have questions about registration or need assistance? Send us a message.
+                </p>
+                <form action="/contact" method="POST">
+                    <div class="form-group">
+                        <label for="contact-name" class="form-label">Your Name</label>
+                        <input type="text" id="contact-name" name="contact-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email" class="form-label">Your Email</label>
+                        <input type="email" id="contact-email" name="contact-email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-subject" class="form-label">Subject</label>
+                        <input type="text" id="contact-subject" name="contact-subject" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-message" class="form-label">Message</label>
+                        <textarea id="contact-message" name="contact-message" class="form-control" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Help Center</a>
+                <a href="#">About Us</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Sea Innovation Technologies All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    
+</body>
+</html>
+<script>
+    // When login button is clicked in the footer
+    document.querySelector('.login-link a').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = 'login33.html';
+    });
+</script>
